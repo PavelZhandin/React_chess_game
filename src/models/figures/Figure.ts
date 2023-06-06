@@ -4,12 +4,12 @@ import { Colors } from "../Colors";
 
 export enum FigureNames {
   "FIGURE" = "",
-  "KING" = "",
-  "KNIGHT" = "",
-  "PAWN" = "",
-  "QUEEN" = "",
-  "ROOK" = "",
-  "BISHOP" = "",
+  "KING" = "King",
+  "KNIGHT" = "Knight",
+  "PAWN" = "Pawn",
+  "QUEEN" = "Queen",
+  "ROOK" = "Rook",
+  "BISHOP" = "Bishop",
 }
 
 export class Figure {
@@ -29,6 +29,12 @@ export class Figure {
   }
 
   canMove(target: Cell): boolean {
+    if (target.figure?.color === this.color) {
+      return false;
+    }
+    if (target.figure?.name === FigureNames.KING) {
+      return false;
+    }
     return true;
   }
 
