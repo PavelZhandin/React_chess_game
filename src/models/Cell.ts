@@ -34,13 +34,20 @@ export class Cell {
     return this.figure === null;
   }
 
+  isEnemy(target: Cell): boolean {
+    if (target.figure) {
+      return this.figure?.color !== target.figure.color;
+    }
+    return false;
+  }
+
   isEmptyVertical(target: Cell): boolean {
     if (this.x !== target.x) {
       return false;
     }
-
     const min = Math.min(this.y, target.y);
     const max = Math.max(this.y, target.y);
+
     for (let y = min + 1; y < max; y++) {
       if (!this.board.getCell(this.x, y).isEmpty()) {
         return false;
